@@ -6,60 +6,59 @@ import { Button } from "./ui/button";
 import { Author, Startup } from "@/sanity/types";
 import { Skeleton } from "@/components/ui/skeleton";
 import { cn, formatDate } from "@/lib/utils";
-export type StartupTypeCard=Omit<Startup,"author"> &{author?:Author};
+export type StartupTypeCard = Omit<Startup, "author"> & { author?: Author };
 
-const StartupCard=({post}:{post:StartupTypeCard})=>{
+const StartupCard = ({ post }: { post: StartupTypeCard }) => {
+  const { _createdAt, views, author, title, category, _id, image, description } = post;
 
-    const {_createdAt,views,author,title,category,_id,image,description}=post;
-
-    return(
-       <li className=" bg-white border-[5px] border-black py-6 px-5 rounded-[22px] shadow-200 hover:border-primary transition-all duration-500 hover:shadow-300 hover:bg-primary-100 group">
-        <div className="flex justify-between items-center">
-            <p className="font-medium text-[16px] bg-primary-100 px-4 py-2 rounded-full group-hover:bg-white-100">
-              {formatDate(_createdAt)}
-            </p>
-            <div className="flex gap-1.5">
-                <EyeIcon className="size-6 text-[#EE2B69]"/>
-                <span className="font-medium text-[16px] text-black">{views}</span>
-            </div>
+  return (
+    <li className="bg-white border border-gray-200 py-6 px-5 rounded-2xl shadow-lg hover:shadow-2xl hover:scale-[1.025] hover:border-black transition-all duration-300 group">
+      <div className="flex justify-between items-center">
+        <p className="font-medium text-sm bg-gray-100 px-4 py-1 rounded-full group-hover:bg-white border border-gray-100">
+          {formatDate(_createdAt)}
+        </p>
+        <div className="flex gap-1.5 items-center">
+          <EyeIcon className="size-5 text-gray-400" />
+          <span className="font-medium text-sm text-gray-700">{views}</span>
         </div>
-        <div className="flex justify-between items-center mt-5">
-            <div className="flex-1">
-                <Link href={`/user/${author?._id}`}>
-                <p className="font-medium text-[16px] text-black line-clamp-1">{author?.name}</p>
-                </Link>
-                <Link href={`/startup/${_id}`}>
-                <h3 className="text-[26px] font-semibold text-black line-clamp-1">{title}</h3>
-                </Link>
-            </div>
-            <Link href={`/user/${author?._id}`}>
-           <Image src={author?.image!} alt={author?.name!} width={48} height={48} className="rounded-full"/>
-            </Link>
+      </div>
+      <div className="flex justify-between items-center mt-5 gap-3">
+        <div className="flex-1 min-w-0">
+          <Link href={`/user/${author?._id}`}>
+            <p className="font-medium text-base text-gray-900 truncate hover:underline">{author?.name}</p>
+          </Link>
+          <Link href={`/startup/${_id}`}>
+            <h3 className="text-xl font-bold text-gray-900 truncate hover:text-black transition">{title}</h3>
+          </Link>
         </div>
-        <Link href={`/startup/${_id}`}>
-        <p className="font-normal text-[16px] line-clamp-2 my-3 text-black-100 break-all">{description}</p>
-        <img src={image} alt="placeholder" className="w-full h-[164px] rounded-[10px] object-cover" />
+        <Link href={`/user/${author?._id}`}>
+          <Image src={author?.image!} alt={author?.name!} width={48} height={48} className="rounded-full border-2 border-gray-300 shadow" />
         </Link>
-        <div className="flex justify-between items-center gap-3 mt-5">
-            <Link href={`/?query=${category?.toLowerCase()}`}>
-            <p className="text-[16px] font-medium text-black">{category}</p>
-            </Link>
-       <Button className="rounded-full bg-black font-medium text-[16px] text-white px-5 py-3" asChild>
-        <Link href={`/startup/${_id}`}>
-        Details
+      </div>
+      <Link href={`/startup/${_id}`}>
+        <p className="font-normal text-sm line-clamp-2 my-3 text-gray-600 break-all">{description}</p>
+        <img src={image} alt="placeholder" className="w-full h-40 rounded-lg object-cover border border-gray-100" />
+      </Link>
+      <div className="flex justify-between items-center gap-3 mt-5">
+        <Link href={`/?query=${category?.toLowerCase()}`}>
+          <p className="text-sm font-medium text-gray-700 bg-gray-100 px-3 py-1 rounded-full hover:bg-gray-900 hover:text-white transition">{category}</p>
         </Link>
-       </Button>
-        </div>
-       </li>
-    )
+        <Button className="rounded-full bg-black font-medium text-base text-white px-5 py-2 shadow hover:bg-gray-900 transition" asChild>
+          <Link href={`/startup/${_id}`}>Details</Link>
+        </Button>
+      </div>
+    </li>
+  );
 };
+
 export const StartupCardSkeleton = () => (
   <>
     {[0, 1, 2, 3, 4].map((index: number) => (
       <li key={cn("skeleton", index)}>
-        <Skeleton className="w-full h-96 rounded-[22px] bg-zinc-400;" />
+        <Skeleton className="w-full h-96 rounded-2xl bg-zinc-300" />
       </li>
     ))}
   </>
 );
+
 export default StartupCard;
