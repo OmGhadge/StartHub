@@ -19,3 +19,5 @@ images:{
 
 };
 
+export default nextConfig
+
