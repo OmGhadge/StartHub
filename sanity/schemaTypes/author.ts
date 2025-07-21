@@ -32,6 +32,24 @@ fields:[
         name:"bio",
         type:"text"
     }),
+    defineField({
+        name: "twitter",
+        type: "url",
+        title: "Twitter URL",
+        description: "Link to Twitter profile"
+    }),
+    defineField({
+        name: "linkedin",
+        type: "url",
+        title: "LinkedIn URL",
+        description: "Link to LinkedIn profile"
+    }),
+    defineField({
+        name: "website",
+        type: "url",
+        title: "Personal Website",
+        description: "Link to personal or portfolio website"
+    }),
 ],
 preview:{
     select:{

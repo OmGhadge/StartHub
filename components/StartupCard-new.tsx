@@ -45,22 +45,18 @@ export default function StartupCard({ startup }: StartupCardProps) {
         </CardHeader>
         <CardContent className="p-4">
           <div className="space-y-3">
-            {/* Category Badge */}
             <Badge variant="secondary" className="text-xs">
               {startup.category}
             </Badge>
 
-            {/* Title */}
             <h3 className="font-semibold text-lg text-gray-900 line-clamp-2 leading-tight">
               {startup.title}
             </h3>
 
-            {/* Description */}
             <p className="text-gray-600 text-sm line-clamp-3 leading-relaxed">
               {startup.description}
             </p>
 
-            {/* Author and Date */}
             <div className="flex items-center justify-between pt-2 border-t border-gray-100">
               <div className="flex items-center space-x-2">
                 <Avatar className="h-6 w-6">

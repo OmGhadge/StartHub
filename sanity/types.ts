@@ -49,6 +49,12 @@ export type Startup = {
   category?: string;
   image?: string;
   pitch?: string;
+  status?: "Seed" | "Series A" | "Series B" | "Series C" | "IPO" | "Bootstrapped";
+  raisedAmount?: number;
+  founders?: Array<string>;
+  website?: string;
+  upvotes?: number;
+  fundedDate?: string;
 };
 
 export type Author = {
@@ -63,6 +69,9 @@ export type Author = {
   email?: string;
   image?: string;
   bio?: string;
+  twitter?: string;
+  linkedin?: string;
+  website?: string;
 };
 
 export type Markdown = string;

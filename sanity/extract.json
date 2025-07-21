@@ -209,6 +209,77 @@
           "type": "string"
         },
         "optional": true
+      },
+      "status": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "union",
+          "of": [
+            {
+              "type": "string",
+              "value": "Seed"
+            },
+            {
+              "type": "string",
+              "value": "Series A"
+            },
+            {
+              "type": "string",
+              "value": "Series B"
+            },
+            {
+              "type": "string",
+              "value": "Series C"
+            },
+            {
+              "type": "string",
+              "value": "IPO"
+            },
+            {
+              "type": "string",
+              "value": "Bootstrapped"
+            }
+          ]
+        },
+        "optional": true
+      },
+      "raisedAmount": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "number"
+        },
+        "optional": true
+      },
+      "founders": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "array",
+          "of": {
+            "type": "string"
+          }
+        },
+        "optional": true
+      },
+      "website": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
+      "upvotes": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "number"
+        },
+        "optional": true
+      },
+      "fundedDate": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
       }
     }
   },
@@ -283,6 +354,27 @@
         "optional": true
       },
       "bio": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
+      "twitter": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
+      "linkedin": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
+      "website": {
         "type": "objectAttribute",
         "value": {
           "type": "string"

@@ -6,10 +6,12 @@ import { Button } from "./ui/button";
 import { Author, Startup } from "@/sanity/types";
 import { Skeleton } from "@/components/ui/skeleton";
 import { cn, formatDate } from "@/lib/utils";
+import UpvoteButton from "@/components/UpvoteButton";
+import Ping from "@/components/Ping";
 export type StartupTypeCard = Omit<Startup, "author"> & { author?: Author };
 
-const StartupCard = ({ post }: { post: StartupTypeCard }) => {
-  const { _createdAt, views, author, title, category, _id, image, description } = post;
+const StartupCard = ({ post, user }: { post: StartupTypeCard, user?: { name: string; image: string } | null }) => {
+  const { _createdAt, views, author, title, category, _id, image, description, upvotes } = post;
 
   return (
     <li className="bg-white border border-gray-200 py-6 px-5 rounded-2xl shadow-lg hover:shadow-2xl hover:scale-[1.025] hover:border-black transition-all duration-300 group">
@@ -18,6 +20,7 @@ const StartupCard = ({ post }: { post: StartupTypeCard }) => {
           {formatDate(_createdAt)}
         </p>
         <div className="flex gap-1.5 items-center">
+        
           <EyeIcon className="size-5 text-gray-400" />
           <span className="font-medium text-sm text-gray-700">{views}</span>
         </div>
@@ -43,6 +46,11 @@ const StartupCard = ({ post }: { post: StartupTypeCard }) => {
         <Link href={`/?query=${category?.toLowerCase()}`}>
           <p className="text-sm font-medium text-gray-700 bg-gray-100 px-3 py-1 rounded-full hover:bg-gray-900 hover:text-white transition">{category}</p>
         </Link>
+        {typeof upvotes !== "undefined" && user ? (
+          <UpvoteButton startupId={_id} initialUpvotes={upvotes} />
+        ) : typeof upvotes !== "undefined" ? (
+          <span className="inline-block px-3 py-1 rounded-full bg-gray-100 text-gray-900 text-xs font-semibold">Upvotes: {upvotes}</span>
+        ) : null}
         <Button className="rounded-full bg-black font-medium text-base text-white px-5 py-2 shadow hover:bg-gray-900 transition" asChild>
           <Link href={`/startup/${_id}`}>Details</Link>
         </Button>

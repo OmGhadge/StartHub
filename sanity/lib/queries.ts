@@ -12,7 +12,9 @@ export const STARTUPS_QUERY =
   views,
   description,
   category,
+  status,
   image,
+  upvotes
 }`);
 
 export const STARTUP_BY_ID_QUERY=
@@ -28,7 +30,13 @@ defineQuery(`*[_type == "startup" && _id == $id][0]{
     description,
     category,
     image,
-    pitch
+    pitch,
+    status,
+    raisedAmount,
+    founders,
+    website,
+    upvotes,
+    fundedDate
     }`);
 
 export const STARTUP_VIEWS_QUERY=defineQuery(`
@@ -58,7 +66,10 @@ export const AUTHOR_BY_ID_QUERY=defineQuery(`
    username,
    email,
    image, 
-   bio
+   bio,
+   twitter,
+   linkedin,
+   website
   }
   `)      
 
@@ -99,6 +110,54 @@ export const PLAYLIST_BY_SLUG_QUERY =
     description,
     category,
     image,
-    pitch
+    pitch,
+    upvotes
   }
+}`);
+
+export const MOST_LIKED_STARTUPS_QUERY = defineQuery(`*[_type == "startup"] | order(upvotes desc)[0...6]{
+  _id,
+  title,
+  slug,
+  _createdAt,
+  author -> {
+    _id, name, image, bio
+  },
+  views,
+  description,
+  category,
+  image,
+  upvotes
+}`);
+
+export const RECENTLY_FUNDED_STARTUPS_QUERY = defineQuery(`*[_type == "startup" && defined(fundedDate)] | order(fundedDate desc)[0...6]{
+  _id,
+  title,
+  slug,
+  _createdAt,
+  author -> {
+    _id, name, image, bio
+  },
+  views,
+  description,
+  category,
+  image,
+  upvotes,
+  fundedDate
+}`);
+
+export const ALL_STARTUPS_QUERY = defineQuery(`*[_type == "startup" && defined(slug.current)] | order(_createdAt desc) {
+  _id,
+  title,
+  slug,
+  _createdAt,
+  author -> {
+    _id, name, image, bio
+  },
+  views,
+  description,
+  category,
+  status,
+  image,
+  upvotes
 }`);

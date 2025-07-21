@@ -1,24 +1,30 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SearchBar from "@/components/SearchBar";
-import StartupCard from "@/components/StartupCard-new";
+import StartupCard from "@/components/StartupCard";
 
-export default function ClientMain({ startups }: { startups: any[] }) {
+export default function ClientMain({ startups, user }: { startups: any[]; user?: { name: string; image: string } | null }) {
+
+  const [searchQuery, setSearchQuery] = useState("");
   const [filteredStartups, setFilteredStartups] = useState(startups);
   const [loading, setLoading] = useState(false);
 
-  const handleSearch = (query: string) => {
-    if (!query.trim()) {
+  useEffect(() => {
+    if (!searchQuery.trim()) {
       setFilteredStartups(startups);
-      return;
+    } else {
+      setFilteredStartups(
+        startups.filter((startup) =>
+          (startup.title || "").toLowerCase().includes(searchQuery.toLowerCase()) ||
+          (startup.description || "").toLowerCase().includes(searchQuery.toLowerCase()) ||
+          (startup.category || "").toLowerCase().includes(searchQuery.toLowerCase())
+        )
+      );
     }
-    setFilteredStartups(
-      startups.filter((startup) =>
-        (startup.title || "").toLowerCase().includes(query.toLowerCase()) ||
-        (startup.description || "").toLowerCase().includes(query.toLowerCase()) ||
-        (startup.category || "").toLowerCase().includes(query.toLowerCase())
-      )
-    );
+  }, [searchQuery, startups]);
+
+  const handleSearch = (query: string) => {
+    setSearchQuery(query);
   };
 
   return (
@@ -36,27 +42,17 @@ export default function ClientMain({ startups }: { startups: any[] }) {
         <h2 className="text-2xl font-semibold text-gray-900">
           Latest Startups
         </h2>
-        <p className="text-gray-600">
+        {<p className="text-gray-600">
           {filteredStartups.length} startup{filteredStartups.length !== 1 ? "s" : ""} found
         </p>
+}
       </div>
       {loading ? (
         <div className="text-center py-16 text-gray-400">Loading...</div>
       ) : filteredStartups.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredStartups.map((startup) => (
-            <StartupCard key={startup._id || startup.id} startup={{
-              id: startup._id || startup.id,
-              title: startup.title,
-              description: startup.description,
-              category: startup.category,
-              image: startup.image,
-              author: {
-                name: startup.author?.name || "Unknown",
-                image: startup.author?.image || ""
-              },
-              createdAt: startup._createdAt || startup.createdAt
-            }} />
+            <StartupCard key={startup._id || startup.id} post={startup} user={user} />
           ))}
         </div>
       ) : (
@@ -65,13 +61,7 @@ export default function ClientMain({ startups }: { startups: any[] }) {
           <p className="text-gray-400 text-sm mt-2">Try adjusting your search terms.</p>
         </div>
       )}
-      {filteredStartups.length > 0 && !loading && (
-        <div className="text-center mt-12">
-          <button className="bg-white text-gray-700 border border-gray-300 px-6 py-3 rounded-lg hover:bg-gray-50 transition-colors">
-            Load More Startups
-          </button>
-        </div>
-      )}
+
     </main>
   );
 } 

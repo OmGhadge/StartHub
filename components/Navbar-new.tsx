@@ -4,13 +4,14 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { LogIn, LogOut, Menu, X, BadgePlus } from 'lucide-react';
+import { LogIn, LogOut, Menu, X, BadgePlus, ChevronDown } from 'lucide-react';
 import { serverSignIn, serverSignOut } from '@/components/auth-actions';
 
 interface NavbarProps {
   user?: {
     name: string;
     image: string;
+    id?: string; // Added for user profile link
   } | null;
 }
 
@@ -46,16 +47,18 @@ export default function Navbar({ user }: NavbarProps) {
             )}
             {user ? (
               <>
-                <form action={serverSignOut}>
+                <form action={serverSignOut} className="hidden md:block">
                   <Button type="submit" className="flex items-center gap-2 bg-white text-gray-900 border border-gray-300 hover:bg-gray-50">
-                    <LogOut className="h-4 w-4 text-red-500" />
+                    <LogOut className="h-4 w-4 text-black" />
                     <span className="hidden sm:inline">Logout</span>
                   </Button>
                 </form>
-                <Avatar className="h-8 w-8 ml-2">
-                  <AvatarImage src={user.image} alt={user.name} />
-                  <AvatarFallback>{user.name.charAt(0)}</AvatarFallback>
-                </Avatar>
+                <Link href={user.id ? `/user/${user.id}` : "/user/me"} className="ml-2">
+                  <Avatar className="h-8 w-8">
+                    <AvatarImage src={user.image} alt={user.name} />
+                    <AvatarFallback>{user.name.charAt(0)}</AvatarFallback>
+                  </Avatar>
+                </Link>
               </>
             ) : (
               <form action={serverSignIn}>
