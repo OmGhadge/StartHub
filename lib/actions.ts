@@ -73,7 +73,7 @@ export async function upvoteStartup(startupId: string) {
   if (!session || !session.user) {
     throw new Error("You must be logged in to upvote.");
   }
-  // Increment upvotes atomically
+  
   const updated = await client.patch(startupId)
     .inc({ upvotes: 1 })
     .commit({ autoGenerateArrayKeys: true });

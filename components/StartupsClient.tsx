@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import ClientMain from "@/components/ClientMain";
 
 export default function StartupsClient({

@@ -4,14 +4,14 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { LogIn, LogOut, Menu, X, BadgePlus, ChevronDown } from 'lucide-react';
+import { LogIn, LogOut, Menu, X, BadgePlus } from 'lucide-react';
 import { serverSignIn, serverSignOut } from '@/components/auth-actions';
 
 interface NavbarProps {
   user?: {
     name: string;
     image: string;
-    id?: string; // Added for user profile link
+    id?: string; 
   } | null;
 }
 
@@ -22,14 +22,12 @@ export default function Navbar({ user }: NavbarProps) {
     <nav className="bg-white border-b border-gray-200 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          {/* Logo */}
           <div className="flex items-center">
             <Link href="/" className="text-2xl font-bold text-gray-900">
               StartupHub
             </Link>
           </div>
 
-          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-6">
             <Link href="/" className="text-gray-700 hover:text-gray-900 transition-colors">
               Home
@@ -70,7 +68,6 @@ export default function Navbar({ user }: NavbarProps) {
             )}
           </div>
 
-          {/* Mobile menu button */}
           <div className="md:hidden">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -81,7 +78,6 @@ export default function Navbar({ user }: NavbarProps) {
           </div>
         </div>
 
-        {/* Mobile Navigation */}
         {isMenuOpen && (
           <div className="md:hidden py-4 border-t border-gray-200">
             <div className="flex flex-col space-y-3">

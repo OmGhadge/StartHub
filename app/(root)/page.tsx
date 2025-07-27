@@ -1,8 +1,7 @@
 import Navbar from "@/components/Navbar-new";
-import ClientMain from "@/components/ClientMain";
 import { auth } from "@/auth";
 import { sanityFetch, SanityLive } from "@/sanity/lib/live";
-import { STARTUPS_QUERY, PLAYLIST_BY_SLUG_QUERY, STARTUP_BY_ID_QUERY, MOST_LIKED_STARTUPS_QUERY, RECENTLY_FUNDED_STARTUPS_QUERY } from "@/sanity/lib/queries";
+import { STARTUPS_QUERY, PLAYLIST_BY_SLUG_QUERY, MOST_LIKED_STARTUPS_QUERY, RECENTLY_FUNDED_STARTUPS_QUERY } from "@/sanity/lib/queries";
 import StartupCard, { StartupTypeCard } from "@/components/StartupCard";
 import { client } from "@/sanity/lib/client";
 

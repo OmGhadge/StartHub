@@ -39,9 +39,8 @@ export default function UserProfileClient({ user, session, id }: {
     if (res.status === "SUCCESS") {
       toast("Profile updated successfully");
       setEditOpen(false);
-      // Optionally update UI with new values
       setProfile((prev) => ({ ...prev }));
-      window.location.reload(); // For now, reload to reflect changes everywhere
+      window.location.reload(); 
     } else {
       toast.error("Failed to update profile: " + (res.error || "Unknown error"));
     }
@@ -50,7 +49,6 @@ export default function UserProfileClient({ user, session, id }: {
   return (
     <div className="min-h-screen bg-gray-50 py-12 px-4">
       <div className="max-w-2xl mx-auto bg-white rounded-2xl shadow-lg p-8 flex flex-col items-center mb-12 relative">
-        {/* Back Button */}
         <button
           type="button"
           onClick={() => (window.history.length > 1 ? window.history.back() : window.location.assign("/"))}
@@ -59,7 +57,6 @@ export default function UserProfileClient({ user, session, id }: {
         >
           <ArrowLeft className="w-5 h-5 text-gray-700" />
         </button>
-        {/* Edit Profile Button (only for self) */}
         {session?.id === id && (
           <Modal open={editOpen} onOpenChange={setEditOpen}>
             <ModalTrigger>
@@ -107,7 +104,6 @@ export default function UserProfileClient({ user, session, id }: {
             </ModalContent>
           </Modal>
         )}
-        {/* Logout Button (only for self) */}
         {session?.id === id && (
           <form action={serverSignOut} className="absolute right-4 top-4">
             <button
@@ -130,7 +126,6 @@ export default function UserProfileClient({ user, session, id }: {
         <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-1 text-center break-words">{user.name}</h1>
         <p className="text-gray-500 text-base mb-2 text-center">@{user.username}</p>
         {user.bio && <p className="text-gray-700 text-center mb-4 max-w-xl">{user.bio}</p>}
-        {/* Connect with Author section */}
         <div className="flex flex-col items-center gap-2 mt-2 w-full">
           <span className="text-gray-500 text-sm mb-1">Connect with {user.name?.split(" ")[0] || "Author"}</span>
           <div className="flex gap-3 justify-center">

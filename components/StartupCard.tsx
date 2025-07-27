@@ -1,4 +1,3 @@
-
 import { EyeIcon } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -7,7 +6,6 @@ import { Author, Startup } from "@/sanity/types";
 import { Skeleton } from "@/components/ui/skeleton";
 import { cn, formatDate } from "@/lib/utils";
 import UpvoteButton from "@/components/UpvoteButton";
-import Ping from "@/components/Ping";
 export type StartupTypeCard = Omit<Startup, "author"> & { author?: Author };
 
 const StartupCard = ({ post, user }: { post: StartupTypeCard, user?: { name: string; image: string } | null }) => {

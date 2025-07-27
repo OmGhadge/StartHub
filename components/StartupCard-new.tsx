@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
-import { Calendar, User } from 'lucide-react';
+import { Calendar } from 'lucide-react';
 
 interface StartupCardProps {
   startup: {
