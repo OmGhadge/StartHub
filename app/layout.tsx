@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "GC Directory",
-  description: "Pitch, Vote and Grow",
+  title: "StartHub",
+  description: "Discover, share, and upvote innovative startups on StartHub.",
 };
 
 export default function RootLayout({

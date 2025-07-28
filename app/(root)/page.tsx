@@ -28,7 +28,7 @@ export default async function MainPage({
     <div className="min-h-screen bg-gray-50">
       <Navbar user={session?.user ? { name: session.user.name, image: session.user.image, id: session.id } : null} />
       <section className="max-w-7xl mx-auto px-4 sm:px-8 py-12 text-center">
-        <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Welcome to StartupHub</h1>
+        <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Welcome to StartHub</h1>
         <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">Discover, upvote, and explore the best startups in the community. See what’s trending, recently funded, and handpicked by our editors.</p>
         <a href="/startups" className="inline-block bg-black text-white font-semibold rounded-full px-8 py-3 text-lg shadow hover:bg-gray-900 transition">Browse All Startups</a>
       </section>
@@ -78,7 +78,7 @@ export default async function MainPage({
       <footer className="bg-white border-t border-gray-200 mt-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="text-center text-gray-600">
-            <p>&copy; {new Date().getFullYear()} StartupHub. Built with ❤️ for entrepreneurs.</p>
+            <p>&copy; {new Date().getFullYear()} StartHub. Built with ❤️ for entrepreneurs.</p>
           </div>
         </div>
       </footer>

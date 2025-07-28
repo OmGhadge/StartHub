@@ -107,7 +107,7 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
       <footer className="bg-white border-t border-gray-200 mt-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="text-center text-gray-600">
-            <p>&copy; {new Date().getFullYear()} StartupHub. Built with ❤️ for entrepreneurs.</p>
+            <p>&copy; {new Date().getFullYear()} StartHub. Built with ❤️ for entrepreneurs.</p>
           </div>
         </div>
       </footer>
